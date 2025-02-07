@@ -91,7 +91,7 @@ export const register = (data) => async (dispatch) => {
   dispatch(userSlice.actions.registerRequest());
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/v1/user/register",
+      `${import.meta.env.VITE_API_BASE_URL}/user/register`,
       data,
       {
         withCredentials: true,
@@ -113,7 +113,7 @@ export const login = (data) => async (dispatch) => {
   dispatch(userSlice.actions.loginRequest());
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/v1/user/login",
+      `${import.meta.env.VITE_API_BASE_URL}/user/login`,
       data,
       {
         withCredentials: true,
@@ -133,7 +133,7 @@ export const login = (data) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/user/logout",
+      `${import.meta.env.VITE_API_BASE_URL}/user/logout`,
       { withCredentials: true }
     );
     dispatch(userSlice.actions.logoutSuccess());
@@ -149,7 +149,7 @@ export const logout = () => async (dispatch) => {
 export const fetchUser = () => async (dispatch) => {
   dispatch(userSlice.actions.fetchUserRequest());
   try {
-    const response = await axios.get("http://localhost:5000/api/v1/user/me", {
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/me`, {
       withCredentials: true,
     });
     dispatch(userSlice.actions.fetchUserSuccess(response.data.user));
@@ -165,7 +165,7 @@ export const fetchLeaderboard = () => async (dispatch) => {
   dispatch(userSlice.actions.fetchLeaderboardRequest());
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/user/leaderboard",
+      `${import.meta.env.VITE_API_BASE_URL}/user/leaderboard`,
       {
         withCredentials: true,
       }
